@@ -1,6 +1,51 @@
 #+TITLE: TODOs
 
-* TODO Get react-native-navigation to work.
+* Tasks
+** DONE Get react-native-navigation to work.
+   CLOSED: [2017-05-20 Sat 01:55]
+** TODO Choose Tech Stack
+  - [-] Mobile App
+    - [-] React Native
+      + [X] Navigation: react-native-navigation - https://github.com/wix/react-native-navigation
+      + [ ] QR Code Scanning: ?
+  - [-] Server
+    - [X] Language: JavaScript on Node.js
+    - [ ] HTTP Server: ?
+      + Express - https://expressjs.com/
+      + Koa - http://koajs.com/
+      + Electrode - http://www.electrode.io/
+    - [ ] Database: ?
+      + PostgreSQL - https://www.postgresql.org/
+      + MariaDB - https://mariadb.org/
+    - [ ] Payment Gateway: ?
+      + Stripe - https://stripe.com/docs
+    - [ ] Cryptocurrency Purchases: ?
+      + GDAX - https://docs.gdax.com/
+      + Kraken - https://www.kraken.com/en-us/help/api
+
+* Vision
+** Mobile App
+*** The UI should present the following inputs:
+**** A way to pick how much bitcoin they want to buy.
+**** A way to input a bitcoin wallet address.
+***** Pasting into a text field
+***** Scanning a QR code with the camera
+**** A way to input card information for payment.
+**** A big "Buy" button to start the transaction.
+*** User accounts should be optional.
+**** How could past transactions be displayed securely?
+**** Maybe we could use the phone's local storage to maintain a private list of past transactions.
+**** That way the app won't have to talk to the server for this info.
+** Server
+*** It should provide an endpoint that accepts the inputs the mobile app sends.
+*** Since the buying process takes time, it should be able to send updates to the mobile app on its progress.
+**** Received money
+**** Bought bitcoin
+**** Transferred bitcoin to address
+***** At this point, our end of the contract is complete, and we could even give them a link to https://blockchain.info/ that confirms to everyone that we held up our end of the deal.
 
 * Log
+** <2017-05-20 Sat> Made Tasks and Vision their own sections in this document.
+*** I also added a checkbox list for choosing our tech stack.
+*** Hit C-c C-c to toggle a checkbox in a leaf node.
 ** <2017-05-19 Fri> Started the project.
