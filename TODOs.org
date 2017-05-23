@@ -32,6 +32,7 @@
 ***** Scanning a QR code with the camera
 **** A way to input card information for payment.
 **** A big "Buy" button to start the transaction.
+*** The user should know the status of his transaction as it happens.
 *** User accounts should be optional.
 **** How could past transactions be displayed securely?
 **** Maybe we could use the phone's local storage to maintain a private list of past transactions.
