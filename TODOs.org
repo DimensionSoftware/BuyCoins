@@ -22,6 +22,11 @@
     - [ ] Cryptocurrency Purchases: ?
       + GDAX - https://docs.gdax.com/
       + Kraken - https://www.kraken.com/en-us/help/api
+      + Poloniex - https://poloniex.com/
+        + It's one of the biggest exchanges (but they use PHP).
+      + Gemini - https://gemini.com/
+        + Supposedly, during the dip of 2017-05-25 when all the other exchanges were having
+          trouble handling the load, Gemini still worked.
 
 * Vision
 ** Mobile App
