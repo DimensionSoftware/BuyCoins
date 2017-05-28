@@ -50,7 +50,28 @@
 **** Transferred bitcoin to address
 ***** At this point, our end of the contract is complete, and we could even give them a link to https://blockchain.info/ that confirms to everyone that we held up our end of the deal.
 
+* Implementation Questions
+** How do I manage many long-running and stateful tasks that might crash?
+*** Crash Recovery
+**** I am tempted to delegate crash recovery to runit with user-level (non-root) services.
+***** http://smarden.org/runit/faq.html#userservices
+**** What if starting a new transaction could be as simple as creating a symlink?
+**** I wonder if we could encode a tiny bit of state (like a transaction_id) in the symlink name and have the service read it.
+**** Ideally, I'd like to have a generic `buy-bitcoin` task and create a symlink like `buy-bitcoin+12345` where 12345 is a transaction_id.
+**** If I wanted to start another `buy-bitcoin` transaction, I'd create another symlink with a different transaction_id.
+*** Error Handling
+**** A distinction must be made between errors that are temporary and can be retried and errors that stop the transaction.
+**** Precision and diligence is important here, because we're handling other people's money now.
+*** State Management
+**** To be expedient and practical, I think I'm going to go with PostgreSQL as my database.
+**** Every step of a transaction needs to have its own row.
+***** Transactions have many Steps.
+**** Each step should have a status so that if the program stops and needs to be restarted, the transaction can be resumed where it left off.
+***** A task starts up by loading its transaction state first.
+***** Then, it tries to move to completion one step at a time.
+
 * Log
+** <2017-05-28 Sun> Thinking about the management of many long-running tasks
 ** <2017-05-22 Mon> Making it build on Android
 *** What a pain in the ass that was.
 *** I had to install extra Android SDKs, because rnn wanted version 25.0.1 of the SDK.
