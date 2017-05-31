@@ -8,12 +8,15 @@
     - [-] React Native
       + [X] Navigation: react-native-navigation - https://github.com/wix/react-native-navigation
       + [ ] QR Code Scanning: ?
-  - [-] Server
-    - [X] Language: JavaScript on Node.js
+  - [ ] Server
+    - [ ] Language: ?
+      + JavaScript on node.js
+      + Elixir
     - [ ] HTTP Server: ?
       + Express - https://expressjs.com/
       + Koa - http://koajs.com/
       + Electrode - http://www.electrode.io/
+      + Phoenix (Elixir)
     - [ ] Database: ?
       + PostgreSQL - https://www.postgresql.org/
       + MariaDB - https://mariadb.org/
@@ -59,6 +62,11 @@
 **** I wonder if we could encode a tiny bit of state (like a transaction_id) in the symlink name and have the service read it.
 **** Ideally, I'd like to have a generic `buy-bitcoin` task and create a symlink like `buy-bitcoin+12345` where 12345 is a transaction_id.
 **** If I wanted to start another `buy-bitcoin` transaction, I'd create another symlink with a different transaction_id.
+**** After some investigation, I now know that symlinks aren't enough.  
+***** I have to create service directory for each transaction, because 
+****** runit needs to create its own distinct control directories for each service it's managing.
+****** These control directories cannot be shared.
+***** I can still use a naming scheme for the tasks that encodes the transaction_id.
 *** Error Handling
 **** A distinction must be made between errors that are temporary and can be retried and errors that stop the transaction.
 **** Precision and diligence is important here, because we're handling other people's money now.
@@ -69,8 +77,20 @@
 **** Each step should have a status so that if the program stops and needs to be restarted, the transaction can be resumed where it left off.
 ***** A task starts up by loading its transaction state first.
 ***** Then, it tries to move to completion one step at a time.
+**** Wait.  What would Rich Hickey do?  I know he wouldn't approve of a mutable status field.
+***** To make this "immutable", the task that needs to be done and its execution state (status) need to be separated.
+***** A transaction has many steps.  A step has many iterations.
+*** The Elixir Question
+**** Instead of relying on runit for OS process supervision, we could use Elixir and build around its BEAM process supervision.
+**** I'd have a lot of new things to learn before I could be useful.
+**** The architecture would be different from what I described above, but it would be more "natural".
+**** Questions about which library to pick for certain tasks get significantly reduced if we pick Phoenix and use its defaults.
+**** Interop with exchanges may take a little extra work, but it shouldn't be too bad assuming most of them use REST APIs.
+**** If we ever need to scale out beyond a single machine, Elixir provides a better story.
 
 * Log
+** <2017-05-30 Tue> The Elixir Question
+*** https://github.com/DimensionSoftware/BuyCoins/commit/425ccb61dfc7961d5e459157d01a1d61f5d31138#commitcomment-22311544
 ** <2017-05-28 Sun> Thinking about the management of many long-running tasks
 ** <2017-05-22 Mon> Making it build on Android
 *** What a pain in the ass that was.
