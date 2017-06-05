@@ -27,6 +27,7 @@
       + Kraken - https://www.kraken.com/en-us/help/api
       + Poloniex - https://poloniex.com/
         + It's one of the biggest exchanges (but they use PHP).
+        + Their markets don't have any pairs with fiat currencies, so we can't do fiat -> crypto with Poloniex.
       + Gemini - https://gemini.com/
         + Supposedly, during the dip of 2017-05-25 when all the other exchanges were having
           trouble handling the load, Gemini still worked.
