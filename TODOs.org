@@ -90,6 +90,20 @@
 **** If we ever need to scale out beyond a single machine, Elixir provides a better story.
 
 * Log
+** <2017-06-24 Sat> Let's Pivot
+*** Coinbase may not be cooperative when it comes to allowing us to resell coins.
+**** So let's try something different.
+*** Traders want to know what coin to buy so they can make the most profit.
+**** I want to know this.
+*** It's very difficult to answer this question in a timely manner, because
+**** there are so many markets and
+**** it's impractical for a human to manually track them.
+*** What if we programatically monitored market data across exchanges and sent notifications when potential buying opportunities arose?
+**** We can notice artificial pump and dumps due to sudden intense volume and price increases.
+**** We can notice more organic pumps also.
+**** Arbitrage opportunities between exchanges are easy to find.
+***** There must be bots that take care of this already.
+***** But it all starts with recording and analyzing market data.
 ** <2017-05-30 Tue> The Elixir Question
 *** https://github.com/DimensionSoftware/BuyCoins/commit/425ccb61dfc7961d5e459157d01a1d61f5d31138#commitcomment-22311544
 ** <2017-05-28 Sun> Thinking about the management of many long-running tasks
